@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Obrt Galoić - Soboslikarski i Ličilački Radovi</title>
+    <style>
+      * {
+      :root {
+        --primary: #2563eb;
+        --secondary: #1e40af;
+        --accent: #60a5fa;
+        --dark: #1e293b;
+        --light: #f8fafc;
+        --gray: #64748b;
+      }
+
+      html, body {
+        width: 100vw;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--dark);
+        overflow-x: hidden;
+        background-color: whitesmoke;
+      }
+
+header {
+  background: whitesmoke;
+  color: black;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  /* New border styling */
+  border-bottom: 6px solid;
+  /* Rounded bottom edges */
+  border-radius: 0 0 25px 25px;
+}
+
+
+
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        position: relative;
+      }
+
+      .hero-logo {
+        max-width: 120px;
+        margin-bottom: 1.5rem;
+         border-radius: 50%;
+         box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      }
+
+      .logo {
+        position: absolute;
+        left: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .logo img {
+        height: 50px;
+        width: auto;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      /* Responsive dropdown for mobile */
+      @media (max-width: 768px) {
+        html, body {
+          width: 100vw;
+          min-width: 0;
+          margin: 0;
+          padding: 0;
+        }
+        .gallery, .services, .about {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+        .nav-links {
+          flex-direction: column;
+          background: whitesmoke;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100vw;
+          padding: 2rem 0 2rem 0;
+          gap: 1.5rem;
+          align-items: center;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+          transform: translateY(-200%);
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.3s cubic-bezier(.4,0,.2,1);
+          z-index: 999;
+        }
+        .nav-links.active {
+          transform: translateY(0);
+          opacity: 1;
+          pointer-events: all;
+        }
+        .nav-links li {
+          width: 100%;
+          text-align: center;
+        }
+        .nav-links a {
+          font-size: 1.2rem;
+          padding: 1rem 0;
+          width: 100%;
+          display: block;
+        }
+        nav {
+          gap: 0;
+        }
+      }
+
+    .nav-links a {
+        color: black;
+        text-decoration: none;
+        transition: color 0.3s;
+        }
+
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--dark);
+        font-size: 1.8rem;
+        cursor: pointer;
+      }
+
+      /* HERO SECTION */
+.hero {
+  padding-top: calc(70px + 4rem); /* push content down without creating white gap */
+  background: linear-gradient(120deg, #b3c6f7, #e0e7ff, #a5b4fc, #c7d2fe);
+  background-size: 300% 300%;
+  animation: softBlueShift 12s ease-in-out infinite;
+  color: var(--dark);
+  padding-bottom: 10rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+
+      @keyframes softBlueShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        animation: fadeInUp 0.8s ease-out 0.2s backwards;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: white;
+        color: var(--primary);
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: transform 0.3s, box-shadow 0.3s;
+        animation: fadeInUp 0.8s ease-out 0.4s backwards;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* SERVICES */
+      .services {
+        padding: 5rem 2rem;
+        background: var(--light);
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: var(--dark);
+      }
+
+      .services-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .service-card {
+        background: linear-gradient(120deg, #b3c6f7, #e0e7ff, #a5b4fc, #c7d2fe);
+        background-size: 300% 300%;
+        animation: softBlueShift 12s ease-in-out infinite;
+        padding: 2rem 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .service-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .service-card h3 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+
+      /* ABOUT */
+      .about {
+        padding: 5rem 4vw;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .about-text {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+      .about-text h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary);
+      }
+
+      .about-text p {
+        margin-bottom: 1rem;
+        color: var(--gray);
+        font-size: 1.1rem;
+      }
+
+      .about-image {
+        background: linear-gradient(
+          135deg,
+          var(--accent) 0%,
+          var(--primary) 100%
+        );
+        height: 400px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* GALLERY */
+      .gallery {
+        padding: 5rem 2rem;
+  background: transparent;
+      }
+
+      .gallery-grid {
+        max-width: 1200px;
+        margin: 3rem auto 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      @media (max-width: 768px) {
+        .about-text {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .before-after-container {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        background: var(--light);
+        height: 400px;
+      }
+
+      .before-after-container:hover {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .image-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .before-image,
+      .after-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .after-image {
+        clip-path: inset(0 50% 0 0);
+      }
+
+      .slider-line {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 4px;
+        height: 100%;
+        background: whitesmoke;
+        transform: translateX(-50%);
+        cursor: ew-resize;
+        z-index: 10;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .slider-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        background: whitesmoke;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--primary);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        cursor: ew-resize;
+      }
+
+      .label {
+        position: absolute;
+        top: 20px;
+        padding: 0.5rem 1rem;
+        background: rgba(0, 0, 0, 0.7);
+        color: whitesmoke;
+        font-weight: bold;
+        font-size: 0.9rem;
+        border-radius: 5px;
+        z-index: 5;
+      }
+
+      .label-before {
+        left: 20px;
+      }
+
+      .label-after {
+        right: 20px;
+      }
+
+      /* CONTACT */
+      .contact {
+        padding: 5rem 2rem;
+        background: linear-gradient(120deg, #b3c6f7, #e0e7ff, #a5b4fc, #c7d2fe);
+        background-size: 300% 300%;
+        animation: softBlueShift 12s ease-in-out infinite;
+        color: var(--dark);
+        position: relative;
+      }
+
+      .contact::before {
+        display: none;
+      }
+
+      .contact-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .contact-item {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1.5px solid rgba(100, 116, 139, 0.15);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        padding: 2rem;
+        border-radius: 15px;
+        transition: background 0.3s, box-shadow 0.3s;
+        color: var(--dark);
+        font-size: 0.97rem;
+      }
+      .contact-item a {
+        color: var(--primary) !important;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .contact-item:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      footer {
+        background: whitesmoke;
+        color: var(--dark);
+        text-align: center;
+        padding: 2rem 1rem 3.5rem 1rem;
+        position: relative;
+      }
+
+  .footer-phone {
+    position: fixed;
+    left: 50%;
+    bottom: 0.3rem;
+    transform: translateX(-50%);
+    min-width: 150px;
+    max-width: 90vw;
+    background: whitesmoke;
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0.35rem 1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    z-index: 1200;
+    letter-spacing: 0.3px;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(100,116,139,0.10);
+  }
+  .footer-phone a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  /* Bigger on larger screens */
+  @media (min-width: 992px) {
+    .footer-phone {
+      font-size: 1.3rem;
+      padding: 0.6rem 2rem;
+      min-width: 220px;
+      bottom: 1rem; /* move slightly up for balance */
+      border-radius: 2rem;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+    }
+  }
+
+
+      /* MOBILE */
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
+        }
+
+        .nav-links.active {
+          transform: translateY(0);
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+        }
+
+        .about-image {
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+<header>
+  <nav>
+
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Izbornik">
+      <img src="logo.jpg" alt="Obrt Galoić" style="height:40px;width:auto;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:whitesmoke;" />
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services" onclick="closeMenu()">Usluge</a></li>
+      <li><a href="#gallery" onclick="closeMenu()">Galerija</a></li>
+      <li><a href="#about" onclick="closeMenu()">O nama</a></li>
+      <li><a href="#contact" onclick="closeMenu()">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-content">
+          <img
+            src="logo.jpg"
+            alt="Obrt Galoić"
+            class="hero-logo"
+            onerror="this.style.display='none'"
+          />
+          <h1>Obrt Galoić</h1>
+          <p>
+            Profesionalni soboslikarski i ličilački radovi<br />Kvaliteta koja
+            traje godinama
+          </p>
+          <a href="#contact" class="cta-button">Zatražite Ponudu</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+      <h2 class="section-title">Naše Usluge</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Soboslikarski Radovi</h3>
+          <p>
+            Kompletno bojanje stanova, kuća i poslovnih prostora. Stručno
+            izvođenje svih vrsta soboslikarskih radova.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏗️</div>
+          <h3>Ličilački Radovi</h3>
+          <p>
+            Fasadni radovi, glettanje, gipsanje i svi drugi ličilački radovi
+            prema najvišim standardima.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✨</div>
+          <h3>Dekorativne Tehnike</h3>
+          <p>
+            Specijalne dekorativne tehnike bojanja, štukature i moderne završne
+            obrade.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <h2 class="section-title">Galerija</h2>
+      <div class="gallery-grid">
+        <!-- Prije/Poslije 1 -->
+        <div class="before-after-container">
+          <div class="image-container">
+            <img
+              src="slike/poslije1.jpg"
+              alt="Prije"
+              class="before-image"
+              onerror="this.parentElement.parentElement.innerHTML='<div class=\'gallery-placeholder\'><span>🎨</span><p>Dodaj: prije1.jpg i poslije1.jpg</p></div>'"
+            />
+            <img src="slike/prije1.jpg" alt="Poslije" class="after-image" />
+            <div
+              class="slider-line"
+              onmousedown="startDrag(event, this)"
+              ontouchstart="startDrag(event, this)"
+            >
+              <div class="slider-button">⟷</div>
+            </div>
+            <div class="label label-before">PRIJE</div>
+            <div class="label label-after">POSLIJE</div>
+          </div>
+        </div>
+
+        <!-- Prije/Poslije 2 -->
+        <div class="before-after-container">
+          <div class="image-container">
+            <img
+              src="slike/poslije2.jpg"
+              alt="Prije"
+              class="before-image"
+              onerror="this.parentElement.parentElement.innerHTML='<div class=\'gallery-placeholder\'><span>🖌️</span><p>Dodaj: prije2.jpg i poslije2.jpg</p></div>'"
+            />
+            <img src="slike/prije2.jpg" alt="Poslije" class="after-image" />
+            <div
+              class="slider-line"
+              onmousedown="startDrag(event, this)"
+              ontouchstart="startDrag(event, this)"
+            >
+              <div class="slider-button">⟷</div>
+            </div>
+            <div class="label label-before">PRIJE</div>
+            <div class="label label-after">POSLIJE</div>
+          </div>
+        </div>
+
+        <!-- Prije/Poslije 3 -->
+        <div class="before-after-container">
+          <div class="image-container">
+            <img
+              src="slike/poslije3.jpg"
+              alt="Prije"
+              class="before-image"
+              onerror="this.parentElement.parentElement.innerHTML='<div class=\'gallery-placeholder\'><span>🏗️</span><p>Dodaj: prije3.jpg i poslije3.jpg</p></div>'"
+            />
+            <img src="slike/prije3.jpg" alt="Poslije" class="after-image" />
+            <div
+              class="slider-line"
+              onmousedown="startDrag(event, this)"
+              ontouchstart="startDrag(event, this)"
+            >
+              <div class="slider-button">⟷</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prije/Poslije 4 -->
+        <div class="before-after-container">
+          <div class="image-container">
+            <img
+              src="slike/poslije4.jpg"
+              alt="Prije"
+              class="before-image"
+              onerror="this.parentElement.parentElement.innerHTML='<div class=\'gallery-placeholder\'><span>✨</span><p>Dodaj: prije4.jpg i poslije4.jpg</p></div>'"
+            />
+            <img src="slike/prije4.jpg" alt="Poslije" class="after-image" />
+            <div
+              class="slider-line"
+              onmousedown="startDrag(event, this)"
+              ontouchstart="startDrag(event, this)"
+            >
+              <div class="slider-button">⟷</div>
+            </div>
+            <div class="label label-before">PRIJE</div>
+            <div class="label label-after">POSLIJE</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>O nama</h2>
+          <p>
+            Obrt Galoić je vaš pouzdani partner za sve vrste soboslikarskih i
+            ličilačkih radova.
+          </p>
+          <p>
+            S godinama iskustva i predanosti kvaliteti, pružamo usluge koje
+            zadovoljavaju najviše standarde. Koristimo samo kvalitetne
+            materijale i moderne tehnike.
+          </p>
+          <p>
+            Vaš dom ili poslovni prostor zaslužuje najbolje - povjerite nam da
+            ga pretvorimo u mjesto iz snova!
+          </p>
+        </div>
+        <div class="about-image">
+          <img
+            src="logo.jpg"
+            alt="Obrt Galoić"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='🛠️'; this.parentElement.style.fontSize='5rem'; this.parentElement.style.color='white';"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-content">
+        <h2 class="section-title">Kontaktirajte Nas</h2>
+        <p>
+          Spremni smo odgovoriti na sva vaša pitanja i pružiti besplatnu
+          procjenu
+        </p>
+        <div class="contact-info">
+          <a href="tel:+385911774000" class="contact-item contact-link" style="text-decoration:none;">
+            <h3>📞 Telefon</h3>
+            <p>091 177 4000</p>
+          </a>
+          <a href="mailto:galoicobrt@gmail.com" class="contact-item contact-link" style="text-decoration:none;">
+            <h3>📧 Email</h3>
+            <p>galoicobrt@gmail.com</p>
+          </a>
+          <div class="contact-item">
+            <h3>📍 Lokacija</h3>
+            <p>Zagreb, Hrvatska</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-phone">
+      📞 <a href="tel:+385911774000">091 177 4000</a>
+    </div>
+
+    <script>
+      // Wait for DOM to be fully loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        function toggleMenu() {
+          const navLinks = document.getElementById("navLinks");
+          if (navLinks) {
+            navLinks.classList.toggle("active");
+          }
+        }
+
+        function closeMenu() {
+          const navLinks = document.getElementById("navLinks");
+          if (navLinks) {
+            navLinks.classList.remove("active");
+          }
+        }
+
+        // Make functions globally accessible
+        window.toggleMenu = toggleMenu;
+        window.closeMenu = closeMenu;
+
+        // Before/After Slider functionality
+        let isDragging = false;
+        let currentSlider = null;
+
+        window.startDrag = function (e, slider) {
+          isDragging = true;
+          currentSlider = slider;
+          e.preventDefault();
+        };
+
+        function drag(e) {
+          if (!isDragging || !currentSlider) return;
+
+          const container = currentSlider.parentElement;
+          if (!container) return;
+
+          const rect = container.getBoundingClientRect();
+          let x;
+
+          if (e.type === "touchmove") {
+            x = e.touches[0].clientX - rect.left;
+          } else {
+            x = e.clientX - rect.left;
+          }
+
+          let percentage = (x / rect.width) * 100;
+          percentage = Math.max(0, Math.min(100, percentage));
+
+          currentSlider.style.left = percentage + "%";
+          const afterImage = container.querySelector(".after-image");
+          if (afterImage) {
+            afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+          }
+        }
+
+        function stopDrag() {
+          isDragging = false;
+          currentSlider = null;
+        }
+
+        document.addEventListener("mousemove", drag);
+        document.addEventListener("touchmove", drag);
+        document.addEventListener("mouseup", stopDrag);
+        document.addEventListener("touchend", stopDrag);
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+
+        // Add scroll animation
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -100px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animation = "fadeInUp 0.8s ease-out";
+            }
+          });
+        }, observerOptions);
+
+        document
+          .querySelectorAll(
+            ".service-card, .about-text, .contact-item, .before-after-container"
+          )
+          .forEach((el) => {
+            observer.observe(el);
+          });
+      });
+    </script>
+  </body>
+</html>
