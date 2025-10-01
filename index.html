@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Obrt Galoić - Soboslikarski i Ličilački Radovi</title>
     <style>
-      * {
       :root {
         --primary: #2563eb;
         --secondary: #1e40af;
@@ -15,12 +14,21 @@
         --gray: #64748b;
       }
 
-      html, body {
-        width: 100vw;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
         min-width: 0;
         margin: 0;
         padding: 0;
+        overflow-x: hidden; /* dodatno osiguranje */
       }
+
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
@@ -29,28 +37,25 @@
         background-color: whitesmoke;
       }
 
-header {
-  background: whitesmoke;
-  color: black;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      header {
+        background: whitesmoke;
+        color: black;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
-  /* New border styling */
-  border-bottom: 6px solid;
-  /* Rounded bottom edges */
-  border-radius: 0 0 25px 25px;
-}
-
-
-
+        /* New border styling */
+        border-bottom: 3px solid;
+        /* Rounded bottom edges */
+        border-radius: 0 0 25px 25px;
+      }
 
       nav {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 2rem;
+        padding: 1.5rem 3.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -61,8 +66,8 @@ header {
       .hero-logo {
         max-width: 120px;
         margin-bottom: 1.5rem;
-         border-radius: 50%;
-         box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        border-radius: 50%;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
       }
 
       .logo {
@@ -86,35 +91,46 @@ header {
         list-style: none;
       }
 
+      /* On mobile screens, add background image to hero */
+
       /* Responsive dropdown for mobile */
       @media (max-width: 768px) {
-        html, body {
+        html,
+        body {
           width: 100vw;
           min-width: 0;
           margin: 0;
           padding: 0;
         }
-        .gallery, .services, .about {
-          padding-left: 0 !important;
-          padding-right: 0 !important;
+        /* Removed override so we can add margin for better spacing */
+        .services {
+          margin-left: 0.1rem;
+          margin-right: 0.1rem;
+        }
+        .service-card {
+          margin-left: 0.1rem;
+          margin-right: 0.1rem;
         }
         .nav-links {
           flex-direction: column;
           background: whitesmoke;
           position: absolute;
-          top: 70px;
+          top: 3rem; /* malo ispod headera */
           left: 0;
-          width: 100vw;
-          padding: 2rem 0 2rem 0;
+          right: 0;
+          width: 100%; /* zauzmi cijelu širinu */
+          padding: 2rem 2rem 2rem 2rem;
           gap: 1.5rem;
           align-items: center;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-          transform: translateY(-200%);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+          border-radius: 22px 22px 22px 22px; /* zaobljeni samo donji rubovi */
+          border: none; /* makni rub da izgleda čišće */
           opacity: 0;
           pointer-events: none;
-          transition: all 0.3s cubic-bezier(.4,0,.2,1);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: 999;
         }
+
         .nav-links.active {
           transform: translateY(0);
           opacity: 1;
@@ -124,22 +140,72 @@ header {
           width: 100%;
           text-align: center;
         }
+        .nav-links li:not(.close-menu-x):not(:last-child) {
+          border-bottom: 1px solid #d1d5db;
+          position: relative;
+          overflow: hidden;
+        }
+        .nav-links li:not(.close-menu-x):not(:last-child)::after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 2px;
+          background: linear-gradient(90deg, #2563eb 0%, #60a5fa 100%);
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+        .nav-links li:not(.close-menu-x):not(:last-child):hover::after {
+          opacity: 1;
+        }
         .nav-links a {
           font-size: 1.2rem;
           padding: 1rem 0;
           width: 100%;
           display: block;
         }
+        .hero {
+          background-image: url("luigi-estuye-lucreative-5wKvYUcWPYQ-unsplash.jpg");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          position: relative;
+        }
+
+        .hero::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(179, 198, 247, 0.75);
+          z-index: 0;
+        }
+
+        .hero-content {
+          position: relative;
+          z-index: 1;
+        }
+
         nav {
-          gap: 0;
+          padding-bottom: 0px;
+          padding-top: 0px;
         }
       }
 
-    .nav-links a {
+      .nav-links a {
         color: black;
         text-decoration: none;
         transition: color 0.3s;
-        }
+        width: 100%;
+        left: 0;
+      }
+      .nav-links a:hover {
+        color: var(--primary);
+      }
 
       .menu-toggle {
         display: none;
@@ -151,20 +217,19 @@ header {
       }
 
       /* HERO SECTION */
-.hero {
-  padding-top: calc(70px + 4rem); /* push content down without creating white gap */
-  background: linear-gradient(120deg, #b3c6f7, #e0e7ff, #a5b4fc, #c7d2fe);
-  background-size: 300% 300%;
-  animation: softBlueShift 12s ease-in-out infinite;
-  color: var(--dark);
-  padding-bottom: 10rem;
-  padding-left: 4rem;
-  padding-right: 4rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
+      .hero {
+        background: linear-gradient(120deg, #b3c6f7, #e0e7ff, #a5b4fc, #c7d2fe);
+        background-size: 300% 300%;
+        animation: softBlueShift 12s ease-in-out infinite;
+        color: var(--dark);
+        padding-top: 10rem;
+        padding-bottom: 10rem;
+        padding-left: 4rem;
+        padding-right: 4rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
 
       @keyframes softBlueShift {
         0% {
@@ -199,7 +264,7 @@ header {
 
       .cta-button {
         display: inline-block;
-        background: white;
+        background: whitesmoke;
         color: var(--primary);
         padding: 1rem 2.5rem;
         border-radius: 50px;
@@ -207,6 +272,7 @@ header {
         font-weight: bold;
         transition: transform 0.3s, box-shadow 0.3s;
         animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       }
 
       .cta-button:hover {
@@ -227,7 +293,7 @@ header {
 
       /* SERVICES */
       .services {
-        padding: 5rem 2rem;
+        padding: 5rem 1rem;
         background: var(--light);
       }
 
@@ -250,7 +316,7 @@ header {
         background: linear-gradient(120deg, #b3c6f7, #e0e7ff, #a5b4fc, #c7d2fe);
         background-size: 300% 300%;
         animation: softBlueShift 12s ease-in-out infinite;
-        padding: 2rem 1.5rem;
+        padding: 2rem 1rem;
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s, box-shadow 0.3s;
@@ -293,13 +359,13 @@ header {
       .about-text h2 {
         font-size: 2.5rem;
         margin-bottom: 1.5rem;
-        color: var(--primary);
       }
 
       .about-text p {
         margin-bottom: 1rem;
         color: var(--gray);
         font-size: 1.1rem;
+        font-weight: 600;
       }
 
       .about-image {
@@ -324,8 +390,8 @@ header {
 
       /* GALLERY */
       .gallery {
-        padding: 5rem 2rem;
-  background: transparent;
+        padding: 5rem 1rem;
+        background: transparent;
       }
 
       .gallery-grid {
@@ -384,7 +450,7 @@ header {
         position: absolute;
         top: 0;
         left: 50%;
-        width: 4px;
+        width: 2px;
         height: 100%;
         background: whitesmoke;
         transform: translateX(-50%);
@@ -414,13 +480,15 @@ header {
       .label {
         position: absolute;
         top: 20px;
-        padding: 0.5rem 1rem;
-        background: rgba(0, 0, 0, 0.7);
+        padding: 0.3rem 0.7rem;
+        background: rgba(0, 0, 0, 0.45);
         color: whitesmoke;
-        font-weight: bold;
-        font-size: 0.9rem;
+        font-weight: 500;
+        font-size: 0.75rem;
         border-radius: 5px;
         z-index: 5;
+        opacity: 0.7;
+        letter-spacing: 1px;
       }
 
       .label-before {
@@ -455,15 +523,21 @@ header {
 
       .contact-info {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: 1fr;
         gap: 2rem;
         margin-top: 3rem;
+      }
+
+      @media (min-width: 992px) {
+        .contact-info {
+          grid-template-columns: repeat(3, 1fr);
+        }
       }
 
       .contact-item {
         background: rgba(255, 255, 255, 0.7);
         border: 1.5px solid rgba(100, 116, 139, 0.15);
-        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
         padding: 2rem;
         border-radius: 15px;
         transition: background 0.3s, box-shadow 0.3s;
@@ -488,43 +562,46 @@ header {
         position: relative;
       }
 
-  .footer-phone {
-    position: fixed;
-    left: 50%;
-    bottom: 0.3rem;
-    transform: translateX(-50%);
-    min-width: 150px;
-    max-width: 90vw;
-    background: whitesmoke;
-    color: var(--primary);
-    font-weight: bold;
-    font-size: 0.85rem;
-    text-align: center;
-    padding: 0.35rem 1rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    z-index: 1200;
-    letter-spacing: 0.3px;
-    border-radius: 1.2rem;
-    border: 1px solid rgba(100,116,139,0.10);
-  }
-  .footer-phone a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: bold;
-  }
+      .footer-phone {
+        position: fixed;
+        left: 50%;
+        bottom: 0.3rem;
+        transform: translateX(-50%);
+        min-width: 150px;
+        max-width: 90vw;
+        background: whitesmoke;
+        color: var(--primary);
+        font-weight: bold;
+        font-size: 0.85rem;
+        text-align: center;
+        padding: 0.35rem 1rem;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        z-index: 1200;
+        letter-spacing: 0.3px;
+        border-radius: 1.2rem;
+        border: 1px rgba(100, 116, 139, 0.1);
+      }
+      .footer-phone a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: bold;
+        background: whitesmoke;
+        padding: 0.1em 0.5em;
+        border-radius: 0.7em;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+      }
 
-  /* Bigger on larger screens */
-  @media (min-width: 992px) {
-    .footer-phone {
-      font-size: 1.3rem;
-      padding: 0.6rem 2rem;
-      min-width: 220px;
-      bottom: 1rem; /* move slightly up for balance */
-      border-radius: 2rem;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.12);
-    }
-  }
-
+      /* Bigger on larger screens */
+      @media (min-width: 992px) {
+        .footer-phone {
+          font-size: 1.3rem;
+          padding: 0.6rem 2rem;
+          min-width: 220px;
+          bottom: 1rem; /* move slightly up for balance */
+          border-radius: 2rem;
+          box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+        }
+      }
 
       /* MOBILE */
       @media (max-width: 768px) {
@@ -557,43 +634,62 @@ header {
     </style>
   </head>
   <body>
-<header>
-  <nav>
-
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Izbornik">
-      <img src="logo.jpg" alt="Obrt Galoić" style="height:40px;width:auto;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:whitesmoke;" />
-    </button>
-
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#services" onclick="closeMenu()">Usluge</a></li>
-      <li><a href="#gallery" onclick="closeMenu()">Galerija</a></li>
-      <li><a href="#about" onclick="closeMenu()">O nama</a></li>
-      <li><a href="#contact" onclick="closeMenu()">Kontakt</a></li>
-    </ul>
-  </nav>
-</header>
-
-
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <div class="hero-content">
+    <header>
+      <nav>
+        <button
+          class="menu-toggle"
+          onclick="toggleMenu()"
+          aria-label="Izbornik"
+        >
           <img
             src="logo.jpg"
             alt="Obrt Galoić"
-            class="hero-logo"
-            onerror="this.style.display='none'"
+            style="
+              height: 40px;
+              width: auto;
+              border-radius: 50%;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+              background: whitesmoke;
+            "
           />
-          <h1>Obrt Galoić</h1>
-          <p>
-            Profesionalni soboslikarski i ličilački radovi<br />Kvaliteta koja
-            traje godinama
-          </p>
-          <a href="#contact" class="cta-button">Zatražite Ponudu</a>
-        </div>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+          <li
+            class="close-menu-x"
+            style="
+              display: none;
+              justify-content: flex-end;
+              padding: 0.7rem 1.7rem 0.5rem 0;
+              width: 100%;
+            "
+          ></li>
+          <li><a href="#services" onclick="closeMenu()">Usluge</a></li>
+          <li><a href="#gallery" onclick="closeMenu()">Galerija</a></li>
+          <li><a href="#about" onclick="closeMenu()">O nama</a></li>
+          <li><a href="#contact" onclick="closeMenu()">Kontakt</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <img
+          src="logo.jpg"
+          alt="Obrt Galoić"
+          class="hero-logo"
+          onerror="this.style.display='none'"
+        />
+        <h1>Obrt Galoić</h1>
+        <p>
+          Profesionalni soboslikarski i ličilački radovi<br />Kvaliteta koja
+          traje godinama
+        </p>
+        <a href="#contact" class="cta-button">Zatražite Ponudu</a>
+      </div>
     </section>
 
-    <section class="services" id="services">
-      <h2 class="section-title">Naše Usluge</h2>
+    <section class="services" id="services" style="background: whitesmoke">
+      <h2 class="section-title">Usluge</h2>
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon">🎨</div>
@@ -640,7 +736,20 @@ header {
               onmousedown="startDrag(event, this)"
               ontouchstart="startDrag(event, this)"
             >
-              <div class="slider-button">⟷</div>
+              <div class="slider-button">
+                <img
+                  src="cetka.jpeg"
+                  alt="Slider"
+                  style="
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    background: whitesmoke;
+                    object-fit: cover;
+                  "
+                />
+              </div>
             </div>
             <div class="label label-before">PRIJE</div>
             <div class="label label-after">POSLIJE</div>
@@ -662,7 +771,20 @@ header {
               onmousedown="startDrag(event, this)"
               ontouchstart="startDrag(event, this)"
             >
-              <div class="slider-button">⟷</div>
+              <div class="slider-button">
+                <img
+                  src="cetka.jpeg"
+                  alt="Slider"
+                  style="
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    background: whitesmoke;
+                    object-fit: cover;
+                  "
+                />
+              </div>
             </div>
             <div class="label label-before">PRIJE</div>
             <div class="label label-after">POSLIJE</div>
@@ -684,19 +806,35 @@ header {
               onmousedown="startDrag(event, this)"
               ontouchstart="startDrag(event, this)"
             >
-              <div class="slider-button">⟷</div>
+              <div class="slider-button">
+                <img
+                  src="cetka.jpeg"
+                  alt="Slider"
+                  style="
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    background: whitesmoke;
+                    object-fit: cover;
+                  "
+                />
+              </div>
             </div>
+            <div class="label label-before">PRIJE</div>
+            <div class="label label-after">POSLIJE</div>
           </div>
         </div>
 
         <!-- Prije/Poslije 4 -->
+        <!-- Prije/Poslije 3 -->
         <div class="before-after-container">
           <div class="image-container">
             <img
               src="slike/poslije4.jpg"
               alt="Prije"
               class="before-image"
-              onerror="this.parentElement.parentElement.innerHTML='<div class=\'gallery-placeholder\'><span>✨</span><p>Dodaj: prije4.jpg i poslije4.jpg</p></div>'"
+              onerror="this.parentElement.parentElement.innerHTML='<div class=\'gallery-placeholder\'><span>🏗️</span><p>Dodaj: prije3.jpg i poslije3.jpg</p></div>'"
             />
             <img src="slike/prije4.jpg" alt="Poslije" class="after-image" />
             <div
@@ -704,7 +842,20 @@ header {
               onmousedown="startDrag(event, this)"
               ontouchstart="startDrag(event, this)"
             >
-              <div class="slider-button">⟷</div>
+              <div class="slider-button">
+                <img
+                  src="cetka.jpeg"
+                  alt="Slider"
+                  style="
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    background: whitesmoke;
+                    object-fit: cover;
+                  "
+                />
+              </div>
             </div>
             <div class="label label-before">PRIJE</div>
             <div class="label label-after">POSLIJE</div>
@@ -716,7 +867,7 @@ header {
     <section class="about" id="about">
       <div class="about-content">
         <div class="about-text">
-          <h2>O nama</h2>
+          <h2 class="section-title">O nama</h2>
           <p>
             Obrt Galoić je vaš pouzdani partner za sve vrste soboslikarskih i
             ličilačkih radova.
@@ -743,17 +894,25 @@ header {
 
     <section class="contact" id="contact">
       <div class="contact-content">
-        <h2 class="section-title">Kontaktirajte Nas</h2>
+        <h2 class="section-title">Kontaktirajte nas</h2>
         <p>
           Spremni smo odgovoriti na sva vaša pitanja i pružiti besplatnu
           procjenu
         </p>
         <div class="contact-info">
-          <a href="tel:+385911774000" class="contact-item contact-link" style="text-decoration:none;">
+          <a
+            href="tel:+385911774000"
+            class="contact-item contact-link"
+            style="text-decoration: none"
+          >
             <h3>📞 Telefon</h3>
             <p>091 177 4000</p>
           </a>
-          <a href="mailto:galoicobrt@gmail.com" class="contact-item contact-link" style="text-decoration:none;">
+          <a
+            href="mailto:galoicobrt@gmail.com"
+            class="contact-item contact-link"
+            style="text-decoration: none"
+          >
             <h3>📧 Email</h3>
             <p>galoicobrt@gmail.com</p>
           </a>
@@ -772,10 +931,36 @@ header {
     <script>
       // Wait for DOM to be fully loaded
       document.addEventListener("DOMContentLoaded", function () {
+        // Add X button to navLinks for mobile
+        const navLinks = document.getElementById("navLinks");
+        if (navLinks) {
+          const closeLi = navLinks.querySelector(".close-menu-x");
+          if (closeLi) {
+            closeLi.innerHTML =
+              '<button id="closeMenuBtn" aria-label="Zatvori izbornik" style="background:none;border:none;font-size:2rem;line-height:1;color:#333;cursor:pointer;padding-top:0.1em;padding-right:0.1em">&times;</button>';
+            closeLi.style.display = "none";
+            document.getElementById("closeMenuBtn")?.remove(); // Remove if already exists
+          }
+        }
         function toggleMenu() {
           const navLinks = document.getElementById("navLinks");
           if (navLinks) {
             navLinks.classList.toggle("active");
+            // Show or hide the X button only on mobile
+            const closeLi = navLinks.querySelector(".close-menu-x");
+            if (window.innerWidth <= 768 && closeLi) {
+              closeLi.style.display = navLinks.classList.contains("active")
+                ? "flex"
+                : "none";
+              if (!closeLi.querySelector("#closeMenuBtn")) {
+                closeLi.innerHTML =
+                  '<button id="closeMenuBtn" aria-label="Zatvori izbornik" style="background:none;border:none;font-size:2rem;line-height:1;color:#333;cursor:pointer;padding-top:0.1em;padding-right:0.1em">&times;</button>';
+              }
+              const btn = closeLi.querySelector("#closeMenuBtn");
+              if (btn) btn.onclick = () => closeMenu();
+            } else if (closeLi) {
+              closeLi.style.display = "none";
+            }
           }
         }
 
@@ -783,6 +968,9 @@ header {
           const navLinks = document.getElementById("navLinks");
           if (navLinks) {
             navLinks.classList.remove("active");
+            // Hide the X button
+            const closeLi = navLinks.querySelector(".close-menu-x");
+            if (closeLi) closeLi.style.display = "none";
           }
         }
 
