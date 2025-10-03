@@ -6,12 +6,12 @@
     <title>Obrt Galoić - Soboslikarski i Ličilački Radovi</title>
     <style>
       :root {
-        --primary: #2563eb;
-        --secondary: #1e40af;
-        --accent: #60a5fa;
-        --dark: #1e293b;
-        --light: #f8fafc;
-        --gray: #64748b;
+        --primary: #9fcfce; /* exact roller aqua */
+        --secondary: #7fb7b6; /* a bit darker for contrast */
+        --accent: #b8e5e4; /* lighter turquoise accent */
+        --dark: #1e293b; /* keep text dark navy */
+        --light: #f4fafa; /* very soft light background */
+        --gray: #6b7c7c; /* muted gray-blue */
       }
 
       * {
@@ -52,7 +52,7 @@
       nav {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 1.5rem 3.5rem;
+        padding: 1.1rem 3.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -69,7 +69,7 @@
         background: none;
         border: none;
         color: var(--primary);
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         cursor: pointer;
         padding-left: 2rem;
         padding-right: 2rem;
@@ -90,7 +90,7 @@
       }
 
       .hero {
-        background-image: url("yoann-siloine-LiDVw7tZPfY-unsplash.jpg");
+        background-image: url("valjak.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -116,7 +116,6 @@
       }
 
       .hero-content {
-        background: rgba(0, 0, 0, 0.4);
         padding: 1.5rem;
         border-radius: 15px;
         display: inline-block;
@@ -140,7 +139,7 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         font-weight: bold;
       }
 
@@ -165,7 +164,7 @@
         }
 
         nav {
-          padding: 0.4rem 0.8rem !important;
+          padding: 0.2rem 0.8rem !important;
           justify-content: space-between;
         }
 
@@ -252,31 +251,31 @@
         }
 
         .hero {
-          background-image: url("yoann-siloine-LiDVw7tZPfY-unsplash.jpg");
+          background-image: url("valjak.jpg");
           background-size: cover;
-          background-position: center;
+          background-position: 10% center; /* 👈 moves focus more to roller */
           background-repeat: no-repeat;
           color: var(--dark);
-          padding-top: 6rem;
-          padding-bottom: 10rem;
-          padding-left: 4rem;
-          padding-right: 4rem;
+          padding-top: 5.5rem; /* slightly less */
+          padding-bottom: 8rem; /* less padding */
+          padding-left: 2rem;
+          padding-right: 2rem;
           text-align: center;
           position: relative;
           overflow: hidden;
-          animation: none;
         }
 
         .hero-content {
-          background: rgba(0, 0, 0, 0.4);
           padding: 1.5rem;
           border-radius: 15px;
           display: inline-block;
         }
 
-        .hero h1,
-        .hero p {
+        .hero h1 {
           color: whitesmoke;
+        }
+        .hero p {
+          color: var(--dark);
         }
 
         .hero::before {
@@ -345,7 +344,7 @@
       .cta-button {
         display: inline-block;
         background: whitesmoke;
-        color: var(--primary);
+        color: var(--secondary);
         padding: 1rem 2.5rem;
         border-radius: 50px;
         text-decoration: none;
@@ -393,7 +392,12 @@
       }
 
       .service-card {
-        background: linear-gradient(120deg, #b3c6f7, #e0e7ff, #a5b4fc, #c7d2fe);
+        background: linear-gradient(
+          120deg,
+          #9fcfce,
+          /* exact roller blue */ #b8e5e4,
+          /* lighter turquoise */ #d6f3f2 /* pastel highlight */
+        );
         background-size: 300% 300%;
         animation: softBlueShift 12s ease-in-out infinite;
         padding: 2rem 1rem;
@@ -414,7 +418,7 @@
       }
 
       .service-card h3 {
-        color: var(--primary);
+        color: var(--dark);
         margin-bottom: 1rem;
       }
 
@@ -583,7 +587,12 @@
       /* CONTACT */
       .contact {
         padding: 5rem 2rem;
-        background: linear-gradient(120deg, #b3c6f7, #e0e7ff, #a5b4fc, #c7d2fe);
+        background: linear-gradient(
+          120deg,
+          #9fcfce,
+          /* exact roller blue */ #b8e5e4,
+          /* lighter turquoise */ #d6f3f2 /* very light aqua pastel */
+        );
         background-size: 300% 300%;
         animation: softBlueShift 12s ease-in-out infinite;
         color: var(--dark);
@@ -787,12 +796,12 @@
         <div class="before-after-container">
           <div class="image-container">
             <img
-              src="slike/poslije1.jpg"
+              src="slike/poslije5.jpg"
               alt="Prije"
               class="before-image"
               onerror="this.parentElement.parentElement.innerHTML='<div class=\'gallery-placeholder\'><span>🎨</span><p>Dodaj: prije1.jpg i poslije1.jpg</p></div>'"
             />
-            <img src="slike/prije1.jpg" alt="Poslije" class="after-image" />
+            <img src="slike/prije5.jpg" alt="Poslije" class="after-image" />
             <div
               class="slider-line"
               onmousedown="startDrag(event, this)"
@@ -898,6 +907,76 @@
               onerror="this.parentElement.parentElement.innerHTML='<div class=\'gallery-placeholder\'><span>🏗️</span><p>Dodaj: prije3.jpg i poslije3.jpg</p></div>'"
             />
             <img src="slike/prije4.jpg" alt="Poslije" class="after-image" />
+            <div
+              class="slider-line"
+              onmousedown="startDrag(event, this)"
+              ontouchstart="startDrag(event, this)"
+            >
+              <div class="slider-button">
+                <img
+                  src="cetka.jpeg"
+                  alt="Slider"
+                  style="
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    background: whitesmoke;
+                    object-fit: cover;
+                  "
+                />
+              </div>
+            </div>
+            <div class="label label-before">PRIJE</div>
+            <div class="label label-after">POSLIJE</div>
+          </div>
+        </div>
+
+        <!-- Prije/Poslije 6 -->
+        <div class="before-after-container">
+          <div class="image-container">
+            <img
+              src="slike/poslije6.jpg"
+              alt="Prije"
+              class="before-image"
+              onerror="this.parentElement.parentElement.innerHTML='<div class=\'gallery-placeholder\'><span>🎨</span><p>Dodaj: prije1.jpg i poslije1.jpg</p></div>'"
+            />
+            <img src="slike/prije6.jpg" alt="Poslije" class="after-image" />
+            <div
+              class="slider-line"
+              onmousedown="startDrag(event, this)"
+              ontouchstart="startDrag(event, this)"
+            >
+              <div class="slider-button">
+                <img
+                  src="cetka.jpeg"
+                  alt="Slider"
+                  style="
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    background: whitesmoke;
+                    object-fit: cover;
+                  "
+                />
+              </div>
+            </div>
+            <div class="label label-before">PRIJE</div>
+            <div class="label label-after">POSLIJE</div>
+          </div>
+        </div>
+
+        <!-- Prije/Poslije 1 -->
+        <div class="before-after-container">
+          <div class="image-container">
+            <img
+              src="slike/poslije7.jpg"
+              alt="Prije"
+              class="before-image"
+              onerror="this.parentElement.parentElement.innerHTML='<div class=\'gallery-placeholder\'><span>🎨</span><p>Dodaj: prije1.jpg i poslije1.jpg</p></div>'"
+            />
+            <img src="slike/prije7.jpg" alt="Poslije" class="after-image" />
             <div
               class="slider-line"
               onmousedown="startDrag(event, this)"
