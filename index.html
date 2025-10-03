@@ -103,6 +103,11 @@
         position: relative;
         overflow: hidden;
         animation: none;
+          display: flex;
+  flex-direction: column; /* stack logo + content vertically */
+  align-items: center;   /* center horizontally */
+  justify-content: center; /* center vertically */
+  text-align: center;
       }
 
       .hero::before {
@@ -118,7 +123,9 @@
       .hero-content {
         padding: 1.5rem;
         border-radius: 15px;
-        display: inline-block;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.5); /* dark transparent overlay */
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
       }
 
       .hero h1,
@@ -275,7 +282,7 @@
           color: whitesmoke;
         }
         .hero p {
-          color: var(--dark);
+          color: whitesmoke;
         }
 
         .hero::before {
@@ -289,8 +296,10 @@
         }
 
         .hero-content {
-          position: relative;
-          z-index: 1;
+          border-radius: 12px;
+          display: inline-block;
+          background: rgba(0, 0, 0, 0.5); /* dark transparent overlay */
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
         }
       }
 
@@ -746,16 +755,19 @@
     </header>
 
     <section class="hero" id="home">
+      <img
+        src="logo.jpg"
+        alt="Obrt Galoić"
+        class="hero-logo"
+        onerror="this.style.display='none'"
+      />
       <div class="hero-content">
-        <img
-          src="logo.jpg"
-          alt="Obrt Galoić"
-          class="hero-logo"
-          onerror="this.style.display='none'"
-        />
         <h1>Obrt Galoić</h1>
-        <p>Profesionalni soboslikarski i ličilački radovi<br /></p>
-        <a href="#contact" class="cta-button">Zatražite Ponudu</a>
+        <p>
+          Profesionalni soboslikarski <br />
+          i ličilački radovi<br />
+        </p>
+        <a href="#contact" class="cta-button">Zatražite ponudu</a>
       </div>
     </section>
 
@@ -764,7 +776,7 @@
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon">🎨</div>
-          <h3>Soboslikarski Radovi</h3>
+          <h3>Soboslikarski radovi</h3>
           <p>
             Kompletno bojanje stanova, kuća i poslovnih prostora. Stručno
             izvođenje svih vrsta soboslikarskih radova.
@@ -772,7 +784,7 @@
         </div>
         <div class="service-card">
           <div class="service-icon">🏗️</div>
-          <h3>Ličilački Radovi</h3>
+          <h3>Ličilački radovi</h3>
           <p>
             Fasadni radovi, glettanje, gipsanje i svi drugi ličilački radovi
             prema najvišim standardima.
@@ -780,7 +792,7 @@
         </div>
         <div class="service-card">
           <div class="service-icon">✨</div>
-          <h3>Dekorativne Tehnike</h3>
+          <h3>Dekorativne tehnike</h3>
           <p>
             Specijalne dekorativne tehnike bojanja, štukature i moderne završne
             obrade.
